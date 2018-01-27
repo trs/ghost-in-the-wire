@@ -23,6 +23,10 @@ export default class extends Phaser.State {
     this.load.image('loaderBar', './assets/images/loader-bar.png')
   }
 
+  create () {
+    this.game.stage.backgroundColor = '#000000';
+  }
+
   render () {
     if (this.fontsReady) {
       this.state.start('Splash')

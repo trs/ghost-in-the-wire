@@ -1,0 +1,12 @@
+{ "columns":10,
+ "image":"..\/images\/global_tileset.png",
+ "imageheight":160,
+ "imagewidth":160,
+ "margin":0,
+ "name":"global_tileset",
+ "spacing":0,
+ "tilecount":100,
+ "tileheight":16,
+ "tilewidth":16,
+ "type":"tileset"
+}

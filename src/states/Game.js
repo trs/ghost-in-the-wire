@@ -3,6 +3,7 @@ import Phaser from 'phaser';
 import Firefly from '../sprites/Firefly';
 import Enemy from '../sprites/Enemy';
 import * as GameStore from '../store/GameStore'
+import {LEVEL_TYPE} from '../classes/const'
 
 export default class extends Phaser.State {
   init () {}
@@ -19,7 +20,7 @@ export default class extends Phaser.State {
     banner.padding.set(10, 16)
     banner.anchor.setTo(0.5)
 
-    let currentLevelMap = GameStore.getCurrentLevelMap(GameStore.LEVEL_TYPE.MAP);
+    let currentLevelMap = GameStore.getCurrentLevelMap(LEVEL_TYPE.MAP);
     currentLevelMap.create(this);
 
     this.firefly = new Firefly({

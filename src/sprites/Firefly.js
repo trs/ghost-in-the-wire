@@ -1,6 +1,5 @@
 import Phaser from 'phaser'
-
-const WALK = '[animation] walk';
+import {ANIMATION} from '../classes/const';
 
 export default class extends Phaser.Sprite {
   constructor ({ game, x, y, asset }) {
@@ -10,17 +9,17 @@ export default class extends Phaser.Sprite {
     this.scale.setTo(1.75);
 
     this.cursors = this.game.input.keyboard.createCursorKeys();
-    this.animations.add(WALK, [0, 1, 2], 8, true);
+    this.animations.add(ANIMATION.WALK, [0, 1, 2], 8, true);
     this.angle = 270;
   }
 
   walk() {
-    this.animations.play(WALK);
+    this.animations.play(ANIMATION.WALK);
   }
 
   stopWalking() {
     this.frame = 0;
-    this.animations.stop(WALK);
+    this.animations.stop(ANIMATION.WALK);
   }
 
   update () {

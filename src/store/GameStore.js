@@ -14,6 +14,8 @@ let currentLevel = 0;
 
 let ports = [];
 
+let levelMaps = [];
+
 // connections between ports are simply modeled as a two-way list
 // we can jump between two ports if there exists a connection with the two
 // ports contained in the between property, and the connection is enabled
@@ -110,4 +112,34 @@ export function getCurrentLevel() {
 export function incrementLevel() {
   currentLevel++;
   resetState();
+}
+
+export const LEVEL_TYPE = {
+  MAP: 'map',
+  NETWORK: 'network'
+}
+
+export const LAYER_TYPE = {
+  BACKGROUND: 'background',
+  FLOOR: 'floor',
+  COLLISION: 'collision',
+  INTERACT: 'interact'
+}
+
+export function addLevelMap(map) {
+  levelMaps.push(map);
+}
+
+export function loadAllLevelMaps(state) {
+  for (let map of levelMaps) {
+    map.load(state);
+  }
+}
+
+export function getCurrentLevelMap(levelType) {
+  switch (levelType) {
+    case LEVEL_TYPE.MAP: {
+      return levelMaps[currentLevel];
+    }
+  }
 }

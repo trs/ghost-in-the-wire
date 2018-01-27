@@ -1,15 +1,16 @@
 /* globals __DEV__ */
-import Phaser from 'phaser'
-import Mushroom from '../sprites/Mushroom'
+import Phaser from 'phaser';
+import Firefly from '../sprites/Firefly';
+import Enemy from '../sprites/Enemy';
 
 export default class extends Phaser.State {
   init () {}
   preload () {}
 
   create () {
-    const bannerText = 'Phaser + ES6 + Webpack'
+    const bannerText = 'Ghost in the Wire'
     let banner = this.add.text(this.world.centerX, this.game.height - 80, bannerText, {
-      font: '40px Bangers',
+      font: '20px "Press Start 2P"',
       fill: '#77BFA3',
       smoothed: false
     })
@@ -17,19 +18,27 @@ export default class extends Phaser.State {
     banner.padding.set(10, 16)
     banner.anchor.setTo(0.5)
 
-    this.mushroom = new Mushroom({
+    this.firefly = new Firefly({
       game: this.game,
-      x: this.world.centerX,
+      x: this.world.centerX + 50,
       y: this.world.centerY,
-      asset: 'mushroom'
-    })
+      asset: 'firefly'
+    });
 
-    this.game.add.existing(this.mushroom)
+    this.enemy = new Enemy({
+      game: this.game,
+      x: this.world.centerX - 50,
+      y: this.world.centerY,
+      asset: 'enemy'
+    });
+
+    this.game.add.existing(this.firefly);
+    this.game.add.existing(this.enemy);
   }
 
   render () {
     if (__DEV__) {
-      this.game.debug.spriteInfo(this.mushroom, 32, 32)
+      this.game.debug.spriteInfo(this.firefly, 32, 32)
     }
   }
 }

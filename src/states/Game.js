@@ -1,6 +1,7 @@
 /* globals __DEV__ */
-import Phaser from 'phaser'
-import Firefly from '../sprites/Firefly'
+import Phaser from 'phaser';
+import Firefly from '../sprites/Firefly';
+import Enemy from '../sprites/Enemy';
 
 export default class extends Phaser.State {
   init () {}
@@ -19,12 +20,20 @@ export default class extends Phaser.State {
 
     this.firefly = new Firefly({
       game: this.game,
-      x: this.world.centerX,
+      x: this.world.centerX + 50,
       y: this.world.centerY,
       asset: 'firefly'
-    })
+    });
 
-    this.game.add.existing(this.firefly)
+    this.enemy = new Enemy({
+      game: this.game,
+      x: this.world.centerX - 50,
+      y: this.world.centerY,
+      asset: 'enemy'
+    });
+
+    this.game.add.existing(this.firefly);
+    this.game.add.existing(this.enemy);
   }
 
   render () {

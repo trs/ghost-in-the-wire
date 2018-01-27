@@ -38,47 +38,45 @@ export default class NetworkState extends Phaser.State {
   }
 
   preload () {
-    this.load.spritesheet('network-node-button', 'assets/images/network-node-button.png', 33, 33, 2);
+    this.load.spritesheet('network-node-button', 'assets/images/network-node-button.png', 33, 33, 3);
+  }
+
+  createButton(node, x, y, enabled = true) {
+    let button;
+
+    if (enabled) {
+      button = this.add.button(this.world.centerX + x, this.world.centerY + y, 'network-node-button', this.jump.bind(this, node), 0, 1, 0);
+    } else {
+      button = this.add.button(this.world.centerX + x, this.world.centerY + y, 'network-node-button', this.cannotJump.bind(this, node), 2, 2, 2);
+    }
+
+    button.anchor.setTo(0.5, 0.5);
+    
+    return button;
   }
 
   create () {
-    // const bannerText = 'Phaser + ES6 + Webpack'
-    // let banner = this.add.text(this.world.centerX, this.game.height - 80, bannerText, {
-    //   font: '40px Bangers',
-    //   fill: '#77BFA3',
-    //   smoothed: false
-    // })
-
-    // banner.padding.set(10, 16)
-    // banner.anchor.setTo(0.5)
+    const currentNode = GameStore.getCurrentNode();
 
     const nodes = GameStore.getPorts()
-      .forEach((port, index) => {
+      .forEach((port) => {
         const [x, y] = port.pos;
-        const node = this.add.button(this.world.centerX + x, this.world.centerY + y, 'network-node-button', this.jump.bind(this, NODES[index]), this, 1, 0, 0);
-        node.anchor.setTo(0.5, 0.5);
+        const thisNode = NODES[port.id];
+
+        let button = this.createButton(thisNode, x, y, GameStore.canJumpBetween(currentNode, thisNode));
       });
 
-    // const node = this.add.button(this.world.centerX, this.world.centerY, 'network-node-button', this.actionOnClick, this, 1, 0, 0);
-    // const node2 = this.add.button(this.world.centerX - 50, this.world.centerY, 'network-node-button', this.actionOnClick, this, 1, 0, 0);
-    // //  setting the anchor to the center
-    // node.anchor.setTo(0.5, 0.5);
-    // node2.anchor.setTo(0.5, 0.5);
-
     console.log(GameStore.getPorts());
-    // this.button.onInputOver.add(over, this);
-    // this.button.onInputOut.add(out, this);
-    // this.button.onInputUp.add(up, this);
+  }
+
+  cannotJump(toNode) {
+    const currentNode = GameStore.getCurrentNode();
+    console.log(`impossible to jump from ${currentNode.id} to ${toNode.id}`)
   }
 
   jump(toNode) {
     const currentNode = GameStore.getCurrentNode();
-
-    if (GameStore.canJumpBetween(currentNode, toNode)) {
-      console.log(`can jump from ${currentNode.id} to ${toNode.id}`);
-    } else {
-      console.log(`impossible to jump from ${currentNode.id} to ${toNode.id}`)
-    }
+    console.log(`can jump from ${currentNode.id} to ${toNode.id}`);
   }
 
   render () {

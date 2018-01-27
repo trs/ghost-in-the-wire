@@ -10,6 +10,8 @@ import _ from 'lodash';
 //   enabled: boolean
 // }
 
+let currentLevel = 0;
+
 let ports = [];
 
 // connections between ports are simply modeled as a two-way list
@@ -99,4 +101,13 @@ export function resetState() {
   connections = [];
   ports = [];
   currentNode = undefined;
+}
+
+export function getCurrentLevel() {
+  return currentLevel;
+}
+
+export function incrementLevel() {
+  currentLevel++;
+  resetState();
 }

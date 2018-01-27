@@ -5,6 +5,13 @@
 
 [![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
 
+##COLOR PALETTE
+
+```
+#80dfdd tron blue
+#91ebff tron blue
+#2a2a2a background grey
+```
 
 ## Features
 - ESLINT with JavaScript Standard Style configuration

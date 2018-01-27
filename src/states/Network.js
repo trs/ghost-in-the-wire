@@ -5,7 +5,7 @@ import Mushroom from '../sprites/Mushroom'
 export default class NetworkState extends Phaser.State {
   init () {}
   preload () {
-    // this.load.spritesheet('button', 'assets/images/mushroom2.png', 193, 71);
+    this.load.spritesheet('network-node-button', 'assets/images/network-node-button.png', 33, 33, 2);
   }
 
   create () {
@@ -19,7 +19,7 @@ export default class NetworkState extends Phaser.State {
     // banner.padding.set(10, 16)
     // banner.anchor.setTo(0.5)
 
-    this.button = this.add.button(this.world.centerX, this.world.centerY, 'mushroom', this.actionOnClick, this, 0, 0, 0);
+    this.button = this.add.button(this.world.centerX, this.world.centerY, 'network-node-button', this.actionOnClick, this, 1, 0, 0);
 
     //  setting the anchor to the center
     this.button.anchor.setTo(0.5, 0.5);

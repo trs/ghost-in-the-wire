@@ -25,17 +25,17 @@ export default class extends Phaser.Sprite {
   update () {
     // we don't have a use yet for the "down" control...
     // use it perhaps for shielding/defending action??
-    if (this.cursors.right.isDown) {
-      this.angle = 0;
-      this.walk();
-    } else if (this.cursors.left.isDown) {
-      this.angle = 180;
-      this.walk();
-    } else if (this.cursors.up.isDown) {
+    if (this.cursors.up.isDown) {
       this.angle = 270;
       this.walk();
     } else if (this.cursors.down.isDown) {
       this.angle = 90;
+      this.walk();
+    } else if (this.cursors.left.isDown) {
+      this.angle = 180;
+      this.walk();
+    } else  if (this.cursors.right.isDown) {
+      this.angle = 0;
       this.walk();
     } else {
       this.stopWalking();

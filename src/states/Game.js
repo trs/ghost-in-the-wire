@@ -56,14 +56,25 @@ export default class extends Phaser.State {
 
     this.cursors = this.input.keyboard.createCursorKeys();
 
+    // Temporary testing for network layer switch
+    this.spacebar = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+    this.spacebar.onDown.add(function () {
+      let currentLevelMap = GameStore.getCurrentLevelMap(LEVEL_TYPE.MAP);
+
+      GameStore.setCurrentMapType(GameStore.getCurrentMapType() === LEVEL_TYPE.NETWORK ? LEVEL_TYPE.MAP : LEVEL_TYPE.NETWORK);
+      currentLevelMap.setLevelTypeVisibility(this, GameStore.getCurrentMapType());
+    }, this);
+
 
     if (__DEV__) {
       this.collisionLayer.debug = true;
+      this.nwCollisionLayer.debug = true;
     }
   }
 
   update () {
     this.physics.arcade.collide(this.firefly, this.collisionLayer)
+    this.physics.arcade.collide(this.firefly, this.nwCollisionLayer)
 
     this.firefly.body.velocity.y = 0;
     this.firefly.body.velocity.x = 0;
@@ -84,7 +95,7 @@ export default class extends Phaser.State {
  
   render () {
     if (__DEV__) {
-      this.game.debug.spriteInfo(this.firefly, 32, 32)
+      // this.game.debug.spriteInfo(this.firefly, 32, 32)
     }
   }
 }

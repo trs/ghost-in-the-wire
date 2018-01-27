@@ -17,6 +17,8 @@ let ports = [];
 
 let levelMaps = [];
 
+let currentMapType = LEVEL_TYPE.MAP;
+
 // connections between ports are simply modeled as a two-way list
 // we can jump between two ports if there exists a connection with the two
 // ports contained in the between property, and the connection is enabled
@@ -131,4 +133,12 @@ export function getCurrentLevelMap(levelType) {
       return levelMaps[currentLevel];
     }
   }
+}
+
+export function getCurrentMapType() {
+  return currentMapType;
+}
+
+export function setCurrentMapType(state) {
+  currentMapType = state;
 }

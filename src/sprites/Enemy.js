@@ -6,7 +6,7 @@ export default class extends Phaser.Sprite {
     super(game, x, y, asset)
     
     this.anchor.setTo(0.5);
-    this.scale.setTo(1.75);
+    // this.scale.setTo(1.75);
 
     this.cursors = this.game.input.keyboard.createCursorKeys();
 

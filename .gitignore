@@ -8,3 +8,4 @@ dist/
 /index.html
 build/
 package-lock.json
+.DS_Store

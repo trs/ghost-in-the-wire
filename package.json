@@ -1,8 +1,12 @@
 {
-    "name": "PhaserES6Webpack",
+    "name": "ghost-in-the-wire",
     "version": "1.2.1",
-    "description": "",
-    "author": "leandro cabrera <leandcabrera@gmail.com>",
+    "description": "Global Game Jam 2018",
+    "authors": [{
+        "name": "Tyler Stewart"
+    }, {
+        "name": "Chris Rabl"
+    }],
     "main": "index.js",
     "scripts": {
         "dev": "webpack",

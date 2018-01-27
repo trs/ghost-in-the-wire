@@ -10,7 +10,7 @@ export default class extends Phaser.State {
   create () {
     const bannerText = 'Ghost in the Wire'
     let banner = this.add.text(this.world.centerX, this.game.height - 80, bannerText, {
-      font: '40px Bangers',
+      font: '20px "Press Start 2P"',
       fill: '#77BFA3',
       smoothed: false
     })

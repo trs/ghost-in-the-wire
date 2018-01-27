@@ -1,4 +1,5 @@
 import uuid from 'uuid/v4';
+import _ from 'lodash';
 
 // this can be turned into a class structure later
 // it works as separate functions for now
@@ -9,10 +10,24 @@ import uuid from 'uuid/v4';
 //   enabled: boolean
 // }
 
+let currentLevel = 0;
+
+let ports = [];
+
 // connections between ports are simply modeled as a two-way list
 // we can jump between two ports if there exists a connection with the two
 // ports contained in the between property, and the connection is enabled
 let connections = [];
+
+let currentNode;
+
+export function setCurrentNode(node) {
+  currentNode = node;
+}
+
+export function getCurrentNode(node) {
+  return currentNode;
+}
 
 // switches are associated with a connection_id, so when a switch is toggled, that connection
 // is enabled/disabled
@@ -26,13 +41,25 @@ export function toggleSwitchState(connection_id) {
   connection.enabled = !connection.enabled;
 }
 
-function doesContain(connection, port) {
-  return connection.between.indexOf(port) > 0;
-}
-
 export function connectPorts(from, to, enabled = true) {
+  // check that you cannot connect a port to itself
+  if (from === to || _.isUndefined(from) || _.isUndefined(to)) {
+    throw new Error('Cannot connect a port to itself or nothing');
+  }
+
+  // check if the port has been added to the ports list
+  if (!_.includes(ports, from)) {
+    ports.push(from);
+  }
+
+  if (!_.includes(ports, to)) {
+    ports.push(to);
+  }
+
   const already_connected = connections
-    .filter(c => doesContain(c, from) && doesContain(c, to));
+    .filter(c => 
+      _.includes(c.between, from) && 
+      _.includes(c.between, to));
 
   if (!already_connected.length) {
     connections.push({
@@ -43,17 +70,44 @@ export function connectPorts(from, to, enabled = true) {
   }
 }
 
+export function getPorts() {
+  return ports;
+}
+
 export function getConnections() {
   return connections;
 }
 
+// TODO: implement Dijkstra's algorithm here to determine a path through
+// which the player can jump (regardless if the nodes are adjacent)
 export function canJumpBetween(source, destination) {
+  if (source === destination || _.isUndefined(source) | _.isUndefined(destination)) {
+    return false;
+  }
+
   const [ connection ] = connections
-    .filter(c => doesContain(c, from) && doesContain(c, to));
+    .filter(c => 
+      _.includes(c.between, source) && 
+      _.includes(c.between, destination));
 
   if (connection) {
     return connection.enabled;
   }
 
   return false;
+}
+
+export function resetState() {
+  connections = [];
+  ports = [];
+  currentNode = undefined;
+}
+
+export function getCurrentLevel() {
+  return currentLevel;
+}
+
+export function incrementLevel() {
+  currentLevel++;
+  resetState();
 }

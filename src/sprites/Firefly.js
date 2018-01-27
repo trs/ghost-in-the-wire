@@ -11,6 +11,7 @@ export default class extends Phaser.Sprite {
 
     this.cursors = this.game.input.keyboard.createCursorKeys();
     this.animations.add(WALK, [0, 1, 2], 8, true);
+    this.angle = 270;
   }
 
   walk() {
@@ -23,21 +24,18 @@ export default class extends Phaser.Sprite {
   }
 
   update () {
+    // we don't have a use yet for the "down" control...
+    // use it perhaps for shielding/defending action??
     if (this.cursors.right.isDown) {
-        this.angle = 0;
-        this.walk();
-    } else if (this.cursors.down.isDown) {
-        this.angle = 90;
+        this.angle = this.angle + 5 % 360;
         this.walk();
     } else if (this.cursors.left.isDown) {
-        this.angle = 180;
+        this.angle = this.angle - 5 % 360;
         this.walk();
     } else if (this.cursors.up.isDown) {
-        this.angle = 270;
         this.walk();
-    } else {
+    }  else {
         this.stopWalking();
     }
-    // this.angle += 1
   }
 }

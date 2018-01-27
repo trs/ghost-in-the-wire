@@ -106,6 +106,7 @@ export default class extends Phaser.State {
 
     if (__DEV__) {
       this.collisionLayer.debug = true;
+      this.nwCollisionLayer.debug = true;
     }
   }
 
@@ -119,8 +120,9 @@ export default class extends Phaser.State {
 
   update() {
     this.physics.arcade.collide(this.firefly, this.collisionLayer)
-    this.physics.arcade.collide(this.firefly, this.toggleSwitch, this.toggleSwitchCollisionHandler, null, this);
-    this.physics.arcade.collide(this.firefly, this.terminal, this.terminalCollisionHandler, null, this);
+    // this.physics.arcade.collide(this.firefly, this.toggleSwitch, this.toggleSwitchCollisionHandler, null, this);
+    // this.physics.arcade.collide(this.firefly, this.terminal, this.terminalCollisionHandler, null, this);
+    // this.physics.arcade.collide(this.firefly, this.nwCollisionLayer)
 
     this.firefly.body.velocity.y = 0;
     this.firefly.body.velocity.x = 0;
@@ -142,7 +144,7 @@ export default class extends Phaser.State {
  
   render() {
     if (__DEV__) {
-      this.game.debug.spriteInfo(this.firefly, 32, 32)
+      // this.game.debug.spriteInfo(this.firefly, 32, 32)
     }
   }
 }

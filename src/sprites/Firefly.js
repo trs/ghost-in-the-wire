@@ -8,6 +8,7 @@ export default class extends Phaser.Sprite {
     this.anchor.setTo(0.5);
 
     this.cursors = this.game.input.keyboard.createCursorKeys();
+
     this.animations.add(ANIMATION.WALK, [0, 1, 2], 8, true);
     this.angle = 270;
   }

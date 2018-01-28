@@ -13,7 +13,18 @@ export default class extends Phaser.State {
   init () {}
   preload () {}
 
+  shutdown() {
+    this.music.fadeOut(1000);
+  }
+
+  startMusic() {
+    this.music.fadeIn(2000);
+  }
+
   create () {
+    this.music = this.add.audio('no-melody-120bpm');
+    this.music.onDecoded.add(this.startMusic, this);
+
     const bannerText = 'Ghost in the Wire'
     let banner = this.add.text(this.world.centerX, this.game.height - 80, bannerText, {
       font: '20px "Press Start 2P"',

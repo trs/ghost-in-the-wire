@@ -58,6 +58,11 @@ export default class extends Phaser.State {
     this.load.image('player', 'assets/images/player.png');
     this.load.image('terminal', 'assets/images/terminal.png');
 
+    this.load.audio('no-melody-120bpm', 'assets/audio/no-melody-120bpm.mp3');
+    this.load.audio('melody-120bpm', 'assets/audio/melody-120bpm.wav');
+    this.load.audio('intro-160bpm', 'assets/audio/intro-160bpm.wav');
+    this.load.audio('melody-160bpm', 'assets/audio/melody-160bpm.wav');
+
     GameStore.loadAllLevelMaps(this); 
   }
 

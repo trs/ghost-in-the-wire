@@ -11,18 +11,20 @@ import ToggleSwitch from '../sprites/ToggleSwitch';
 
 export default class extends Phaser.State {
   init () {}
+
   preload () {}
 
-  shutdown() {
-    this.music.fadeOut(1000);
-  }
-
   startMusic() {
-    this.music.fadeIn(2000);
+    this.music.volume = 0.1;
+    this.music.loopFull();
   }
 
-  create () {
-    this.music = this.add.audio('no-melody-120bpm');
+  shutdown() {
+    this.music.stop();
+  }
+
+  create() {
+    this.music = this.game.add.audio('melody-120bpm');
     this.music.onDecoded.add(this.startMusic, this);
 
     const bannerText = 'Ghost in the Wire'

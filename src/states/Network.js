@@ -76,7 +76,6 @@ export default class NetworkState extends Phaser.State {
     // draw lines first
     const connections = GameStore.getConnections()
       .forEach((connection) => {
-        console.log(connection);
         const { enabled, between } = connection;
         const [from, to] = between;
         const [x1, y1] = from.pos;
@@ -106,8 +105,6 @@ export default class NetworkState extends Phaser.State {
 
     this.game.add.existing(this.electrifly);
     this.physics.arcade.enable(this.electrifly);
-
-    console.log(GameStore.getPorts());
   }
 
   cannotJump(toNode) {

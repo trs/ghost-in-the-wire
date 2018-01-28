@@ -19,9 +19,23 @@ export default class extends Phaser.State {
     this.load.spritesheet('playButton', 'assets/images/play-button.png', 111, 30, 2);
   }
 
+  startMusic() {
+    this.music.volume = 0.1;
+    // this.music.fadeIn(2000);
+    this.music.loopFull();
+  }
+
+  startGame() {
+    this.state.start('Game')
+    this.music.stop();
+  }
+
   create() {
+    this.music = this.game.add.audio('intro-160bpm');
+    this.music.onDecoded.add(this.startMusic, this);
+
     setTimeout(() => {
-      this.playButton = this.add.button(608, 500, 'playButton', () => this.state.start('Game'), 0, 1, 0);
+      this.playButton = this.add.button(608, 500, 'playButton', () => this.startGame(), 0, 1, 0);
     }, 1500);
   }
 }

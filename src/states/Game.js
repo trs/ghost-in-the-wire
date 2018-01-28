@@ -11,9 +11,22 @@ import ToggleSwitch from '../sprites/ToggleSwitch';
 
 export default class extends Phaser.State {
   init () {}
+
   preload () {}
 
-  create () {
+  startMusic() {
+    this.music.volume = 0.1;
+    this.music.loopFull();
+  }
+
+  shutdown() {
+    this.music.stop();
+  }
+
+  create() {
+    this.music = this.game.add.audio('melody-120bpm');
+    this.music.onDecoded.add(this.startMusic, this);
+
     const bannerText = 'Ghost in the Wire'
     let banner = this.add.text(this.world.centerX, this.game.height - 80, bannerText, {
       font: '20px "Press Start 2P"',

@@ -40,7 +40,19 @@ export default class NetworkState extends Phaser.State {
     this.graphics.endFill();
   }
 
-  create () {
+  startMusic() {
+    this.music.volume = 0.1;
+    this.music.loopFull();
+  }
+
+  shutdown() {
+    this.music.stop();
+  }
+
+  create() {
+    this.music = this.game.add.audio('melody-160bpm');
+    this.music.onDecoded.add(this.startMusic, this);
+
     const currentNode = GameStore.getCurrentNode();
 
     // draw lines first

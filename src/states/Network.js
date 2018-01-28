@@ -4,38 +4,8 @@ import * as GameStore from '../store/GameStore';
 import _ from 'lodash';
 import Electrifly from '../sprites/Electrifly';
 
-const NODES = [{
-  id: 0,
-  pos: [-200, -50]
-}, {
-  id: 1,
-  pos: [-20, -60]
-}, {
-  id: 2,
-  pos: [200, 0]
-}, {
-  id: 3,
-  pos: [-150, 20]
-}, {
-  id: 4,
-  pos: [0, 50]
-}];
-
 export default class NetworkState extends Phaser.State {
   init () {
-    // init basic map
-    const adjacency = [
-      [NODES[0], NODES[1]],
-      [NODES[0], NODES[2]],
-      [NODES[1], NODES[2]],
-      [NODES[2], NODES[3]],
-      [NODES[2], NODES[4]]
-    ];
-    
-    GameStore.setCurrentNode(NODES[0]);
-
-    adjacency.forEach(([from, to]) => GameStore.connectPorts(from, to));
-
     // for drawing primitives
     this.graphics = this.game.add.graphics();
   }
@@ -84,12 +54,11 @@ export default class NetworkState extends Phaser.State {
       })
 
     const nodes = GameStore.getPorts()
-      .forEach((port) => {
-        const [x, y] = port.pos;
-        const thisNode = NODES[port.id];
+      .forEach((node) => {
+        const [x, y] = node.pos;
 
-        if (!(thisNode === currentNode)) {
-          this.drawButton(thisNode, x, y, GameStore.canJumpBetween(currentNode, thisNode));
+        if (!(node === currentNode)) {
+          this.drawButton(node, x, y, GameStore.canJumpBetween(currentNode, node));
         }
       });
 

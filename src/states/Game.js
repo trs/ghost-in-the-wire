@@ -2,8 +2,11 @@
 import Phaser from 'phaser';
 import Firefly from '../sprites/Firefly';
 import Enemy from '../sprites/Enemy';
-import * as GameStore from '../store/GameStore'
+
 import {LEVEL_TYPE} from '../classes/const'
+import * as GameStore from '../store/GameStore'
+
+import ToggleSwitch from '../sprites/ToggleSwitch';
 
 export default class extends Phaser.State {
   init () {}
@@ -37,17 +40,35 @@ export default class extends Phaser.State {
       asset: 'enemy'
     });
 
+    const [connection] = GameStore.getConnections();
+    const {connection_id} = connection;
+    console.log(connection);
+
+    this.toggleSwitch = new ToggleSwitch({
+      game: this.game,
+      x: this.world.centerX - 600,
+      y: this.world.centerY - 600,
+      asset: 'toggle_switch',
+      connection_id
+    });
+
     this.game.add.existing(this.firefly);
     this.game.add.existing(this.enemy);
-    
+    this.game.add.existing(this.toggleSwitch);
+
     this.physics.startSystem(Phaser.Physics.Arcade);
     this.physics.setBoundsToWorld();
 
     this.physics.arcade.enable(this.firefly);
     this.physics.arcade.enable(this.enemy);
+    this.physics.arcade.enable(this.toggleSwitch);
 
     this.firefly.body.collideWorldBounds = true;
     this.enemy.body.collideWorldBounds = true;
+    this.toggleSwitch.body.collideWorldBounds = true;
+    this.firefly.body.bounce.set(1,1);
+    this.toggleSwitch.body.immovable = true;
+    this.toggleSwitch.body.bounce.set(1, 1);
 
     this.camera.setBoundsToWorld();
     this.camera.follow(this.firefly);
@@ -62,8 +83,13 @@ export default class extends Phaser.State {
     }
   }
 
+  collisionHandler (player, toggleSwitch) {
+    toggleSwitch.toggle();
+  }
+
   update () {
     this.physics.arcade.collide(this.firefly, this.collisionLayer)
+    this.physics.arcade.collide(this.firefly, this.toggleSwitch, this.collisionHandler, null, this);
 
     this.firefly.body.velocity.y = 0;
     this.firefly.body.velocity.x = 0;

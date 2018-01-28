@@ -11,6 +11,20 @@ import {LEVEL_TYPE} from '../classes/const';
 //   enabled: boolean
 // }
 
+export const NODES = [{
+  id: 0,
+  pos: [-200, -50]
+}, {
+  id: 1,
+  pos: [-20, -60]
+}, {
+  id: 2,
+  pos: [200, 0]
+}, {
+  id: 3,
+  pos: [-150, 20]
+}];
+
 let currentLevel = 0;
 
 let ports = [];
@@ -44,7 +58,7 @@ export function toggleSwitchState(connection_id) {
   connection.enabled = !connection.enabled;
 }
 
-export function connectPorts(from, to, enabled = true) {
+export function connectPorts(connection_id, from, to, enabled = true) {
   // check that you cannot connect a port to itself
   if (from === to || _.isUndefined(from) || _.isUndefined(to)) {
     throw new Error('Cannot connect a port to itself or nothing');
@@ -66,7 +80,7 @@ export function connectPorts(from, to, enabled = true) {
 
   if (!already_connected.length) {
     connections.push({
-      connection_id: uuid(),
+      connection_id,
       between: [from, to],
       enabled
     });

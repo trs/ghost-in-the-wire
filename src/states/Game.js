@@ -54,15 +54,12 @@ export default class extends Phaser.State {
     this.enemy.body.collideWorldBounds = true;
     this.firefly.body.bounce.set(1,1);
 
-    const [connection] = GameStore.getConnections();
-    const {connection_id} = connection;
-
     this.toggleSwitch = new ToggleSwitch({
       game: this.game,
       x: this.world.centerX - 600,
       y: this.world.centerY - 600,
       asset: 'toggle_switch',
-      connection_id
+      connection_id: 'C23'
     });
 
     this.game.add.existing(this.toggleSwitch);
@@ -76,7 +73,7 @@ export default class extends Phaser.State {
       x: this.world.centerX - 600,
       y: this.world.centerY - 650,
       asset: 'terminal',
-      node: connection.between[1]
+      node: GameStore.NODES[0]
     });
 
 

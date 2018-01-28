@@ -53,8 +53,9 @@ export default class extends Phaser.State {
     this.load.spritesheet('enemy', 'assets/images/enemy.png', 22, 22, 5);
     this.load.spritesheet('toggle_switch', 'assets/images/toggle-switch.png', 3, 12, 2);
     this.load.image('global_tileset', 'assets/images/global_tileset.png')
-    this.load.image('player', 'assets/images/player.png')
-    
+    this.load.image('player', 'assets/images/player.png');
+    this.load.image('terminal', 'assets/images/terminal.png');
+
     GameStore.loadAllLevelMaps(this); 
   }
 

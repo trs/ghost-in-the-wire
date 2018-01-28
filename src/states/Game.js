@@ -57,7 +57,6 @@ export default class extends Phaser.State {
     this.game.input.keyboard.maxPointers = 1;
     this.cursors = this.input.keyboard.createCursorKeys();
 
-
     if (__DEV__) {
       this.collisionLayer.debug = true;
     }

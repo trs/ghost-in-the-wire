@@ -42,11 +42,11 @@ export default class extends Phaser.State {
   preload () {
     this.titleArt = this.add.image(80, 100, 'titleArt');
 
-    this.loaderBg = this.add.sprite(this.game.world.centerX, this.game.world.centerY, 'loaderBg')
-    this.loaderBar = this.add.sprite(this.game.world.centerX, this.game.world.centerY, 'loaderBar')
-    centerGameObjects([this.loaderBg, this.loaderBar])
+    this.loaderBg = this.add.sprite(this.game.world.centerX, this.game.world.centerY, 'loaderBg');
+    this.loaderBar = this.add.sprite(this.game.world.centerX, this.game.world.centerY, 'loaderBar');
+    centerGameObjects([this.loaderBg, this.loaderBar]);
 
-    this.load.setPreloadSprite(this.loaderBar)
+    this.load.setPreloadSprite(this.loaderBar);
     //
     // load your assets
     //
@@ -54,7 +54,7 @@ export default class extends Phaser.State {
     this.load.spritesheet('electrifly', 'assets/images/electrifly.png', 17, 22, 3);
     this.load.spritesheet('enemy', 'assets/images/enemy.png', 22, 22, 5);
     this.load.spritesheet('toggle_switch', 'assets/images/toggle-switch.png', 3, 12, 2);
-    this.load.image('global_tileset', 'assets/images/global_tileset.png')
+    this.load.image('global_tileset', 'assets/images/global_tileset.png');
     this.load.image('player', 'assets/images/player.png');
     this.load.image('terminal', 'assets/images/terminal.png');
 
@@ -62,6 +62,6 @@ export default class extends Phaser.State {
   }
 
   create () {
-    setTimeout(() => this.state.start('Game'), 2000);
+    setTimeout(() => this.state.start('Onboarding'), 2000);
   }
 }

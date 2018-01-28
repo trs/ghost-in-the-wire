@@ -1,27 +1,17 @@
-# Phaser + ES6 + Webpack.
-#### A bootstrap project to create games with Phaser + ES6 + Webpack.
+# Ghost in the Wire
+#### A 2D puzzle/adventure game where you can transmit yourself through the 'net
 
-![Phaser+ES6+Webpack](https://raw.githubusercontent.com/lean/phaser-es6-webpack/master/assets/images/phaser-es6-webpack.jpg)
+![Phaser+ES6+Webpack](https://raw.githubusercontent.com/trs/ghost-in-the-wire/master/assets/images/gitw-logo.png)
 
 [![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
 
-##COLOR PALETTE
+## Color Palette
 
 ```
 #80dfdd tron blue
 #91ebff tron blue
 #2a2a2a background grey
 ```
-
-## Features
-- ESLINT with JavaScript Standard Style configuration
-- Next generation of Javascript
-- Browsers are automatically updated as you change project files
-- Webpack ready
-- WebFont Loader
-
-## Typescript 
-If you need typescript support checkout the ```typescript``` branch. Thanks to @MatsMaker
 
 # Setup
 You'll need to install a few things before you have a working copy of the project.
@@ -106,4 +96,9 @@ https://github.com/cstuncsik/phaser-es6-demo
 
 ## Contributors
 
-https://github.com/RenaudROHLINGER
+https://github.com/trs
+https://github.com/crabl
+
+## Art & Level Design, Storyboarding
+
+Kelso & Angus

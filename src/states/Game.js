@@ -54,6 +54,7 @@ export default class extends Phaser.State {
 
     this.game.renderer.renderSession.roundPixels = true
 
+    this.game.input.keyboard.maxPointers = 1;
     this.cursors = this.input.keyboard.createCursorKeys();
 
 
@@ -69,16 +70,17 @@ export default class extends Phaser.State {
     this.firefly.body.velocity.x = 0;
  
     if(this.cursors.up.isDown) {
-      this.firefly.body.velocity.y -= 200;
-    }
-    else if(this.cursors.down.isDown) {
-      this.firefly.body.velocity.y += 200;
-    }
-    if(this.cursors.left.isDown) {
-      this.firefly.body.velocity.x -= 200;
-    }
-    else if(this.cursors.right.isDown) {
-      this.firefly.body.velocity.x += 200;
+      this.firefly.body.velocity.y = -200;
+      this.firefly.body.velocity.x = 0;
+    } else if(this.cursors.down.isDown) {
+      this.firefly.body.velocity.y = 200;
+      this.firefly.body.velocity.x = 0;
+    } else if(this.cursors.left.isDown) {
+      this.firefly.body.velocity.x = -200;
+      this.firefly.body.velocity.y = 0;
+    } else if(this.cursors.right.isDown) {
+      this.firefly.body.velocity.x = 200;
+      this.firefly.body.velocity.y = 0;
     }
   }
  

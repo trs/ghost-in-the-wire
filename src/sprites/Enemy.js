@@ -65,15 +65,19 @@ export default class extends Phaser.Sprite {
     // }
     
     if (this.cursors.right.isDown) {
-        this.angle = this.angle + 5 % 360;
-        this.walk();
+      this.angle = 0;
+      this.walk();
     } else if (this.cursors.left.isDown) {
-        this.angle = this.angle - 5 % 360;
-        this.walk();
+      this.angle = 180;
+      this.walk();
     } else if (this.cursors.up.isDown) {
-        this.walk();
+      this.angle = 270;
+      this.walk();
+    } else if (this.cursors.down.isDown) {
+      this.angle = 90;
+      this.walk();
     } else {
-        this.stopWalking();
+      this.stopWalking();
     }
   }
 }

@@ -18,6 +18,7 @@ export default class extends Phaser.State {
     // load your assets
     //
     this.load.spritesheet('firefly', 'assets/images/firefly.png', 17, 22, 3);
+    this.load.spritesheet('electrifly', 'assets/images/electrifly.png', 17, 22, 3);
     this.load.spritesheet('enemy', 'assets/images/enemy.png', 22, 22, 5);
 
     this.load.image('global_tileset', 'assets/images/global_tileset.png')

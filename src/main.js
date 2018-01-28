@@ -15,8 +15,8 @@ class Game extends Phaser.Game {
     //const width = docElement.clientWidth > config.gameWidth ? config.gameWidth : docElement.clientWidth
     //const height = docElement.clientHeight > config.gameHeight ? config.gameHeight : docElement.clientHeight
 
-    const width = 600
-    const height = 600
+    const width = config.gameWidth;
+    const height = config.gameHeight;
 
     super(width, height, Phaser.AUTO, 'content', null)
 

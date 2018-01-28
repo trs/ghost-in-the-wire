@@ -22,15 +22,115 @@
             width: 100vw;
         }
 
-        canvas {
-            border: 2px solid #fff;
+        .container {
+            position: relative;
+        }
+
+        .frame {
+            height: 600px;
+            width: 600px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            display: grid;
+        }
+        
+        .corner {
+            width: 60px;
+            height: 60px;
+        }
+
+        .corner-top-left {
+            background: url('../assets/images/frame-corner-top-left.gif');
+            grid-column: 1;
+            grid-row: 1;
+        }
+
+        .corner-top-right {
+            background: url('../assets/images/frame-corner-top-right.gif');
+            grid-column: 3;
+            grid-row: 1;
+        }
+
+        .side-top {
+            height: 60px;
+            width: 480px;
+            background: url('../assets/images/frame-side-top.gif');
+            grid-column: 2;
+            grid-row: 1;
+        }
+
+        .side-bottom {
+            height: 60px;
+            width: 480px;
+            background: url('../assets/images/frame-side-bottom.gif');
+            grid-column: 2;
+            grid-row: 3;
+        }
+
+        .side-left {
+            height: 480px;
+            width: 60px;
+            background: url('../assets/images/frame-side-left.gif');
+            grid-column: 1;
+            grid-row: 2;
+        }
+
+        .side-right {
+            height: 480px;
+            width: 60px;
+            background: url('../assets/images/frame-side-right.gif');
+            grid-column: 3;
+            grid-row: 2;
+        }
+
+        .corner-bottom-left {
+            background: url('../assets/images/frame-corner-bottom-left.gif');
+            grid-column: 1;
+            grid-row: 3;
+        }
+
+        .corner-bottom-right {
+            background: url('../assets/images/frame-corner-bottom-right.gif');
+            grid-column: 3;
+            grid-row: 3;
+        }
+
+        .passthrough {
+            width: 480px;
+            height: 480px;
+            z-index: -1;
+        }
+
+        .content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 0;
         }
     </style>
 </head>
 
 <body>
 
-    <div id="content"></div>
+    <div class="container">
+        <div class="frame">
+            <div class="corner corner-top-left"></div>
+            <div class="side-top"></div>
+            <div class="corner corner-top-right"></div>
+            
+            <div class="side-left"></div>
+            <div class="passthrough"></div>
+            <div class="side-right"></div>
+
+            <div class="corner corner-bottom-left"></div>
+            <div class="side-bottom"></div>
+            <div class="corner corner-bottom-right"></div>
+        </div>
+       
+        <div id="content"></div>
+    </div>
     <!-- uncomment the line bellow for cordova feature -->
     <!-- <script type="text/javascript" src="cordova.js"></script> -->
 </body>

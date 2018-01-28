@@ -32,7 +32,7 @@ export default class NetworkState extends Phaser.State {
     if (enabled) {
       this.graphics.lineStyle(2, 0x80dfdd, 1);
     } else {
-      this.graphics.lineStyle(2, 0xc8c8c8, 1);
+      this.graphics.lineStyle(2, 0xff0000, 1);
     }
 
     this.graphics.moveTo(this.world.centerX + x1, this.world.centerY + y1);//moving position of graphic if you draw mulitple lines
@@ -74,6 +74,9 @@ export default class NetworkState extends Phaser.State {
 
     this.game.add.existing(this.electrifly);
     this.physics.arcade.enable(this.electrifly);
+
+
+    this.camera.focusOnXY(this.world.centerX, this.world.centerY);
   }
 
   cannotJump(toNode) {
@@ -82,7 +85,9 @@ export default class NetworkState extends Phaser.State {
   }
 
   jump(toNode) {
+    this.state.start('Game');
     const currentNode = GameStore.getCurrentNode();
+    GameStore.setCurrentNode(toNode);
     console.log(`can jump from ${currentNode.id} to ${toNode.id}`);
   }
 
@@ -92,7 +97,7 @@ export default class NetworkState extends Phaser.State {
 
   render () {
     if (__DEV__) {
-      
+      this.game.debug.spriteInfo(this.electrifly, 32, 32)
     }
   }
 }

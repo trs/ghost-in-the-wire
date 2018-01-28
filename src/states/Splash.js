@@ -3,40 +3,16 @@ import { centerGameObjects } from '../utils'
 import LevelMap from '../classes/map'
 import * as GameStore from '../store/GameStore'
 
-const NODES = [{
-  id: 0,
-  pos: [-200, -50]
-}, {
-  id: 1,
-  pos: [-20, -60]
-}, {
-  id: 2,
-  pos: [200, 0]
-}, {
-  id: 3,
-  pos: [-150, 20]
-}, {
-  id: 4,
-  pos: [0, 50]
-}];
-
 export default class extends Phaser.State {
   init () {
     GameStore.addLevelMap(new LevelMap({name: 'level0', startX: 16, startY: 16}));
   
-     // init basic map
-    const adjacency = [
-      [NODES[0], NODES[1]],
-      [NODES[0], NODES[2]],
-      [NODES[1], NODES[2]],
-      [NODES[2], NODES[3]],
-      [NODES[2], NODES[4]]
-    ];
-    
-    GameStore.setCurrentNode(NODES[0]);
-
-    adjacency.forEach(([from, to]) => GameStore.connectPorts(from, to));
-  
+    // initialize network basic map
+    GameStore.setCurrentNode(GameStore.NODES[0]);
+    GameStore.connectPorts('C01', GameStore.NODES[0], GameStore.NODES[1]);
+    GameStore.connectPorts('C02', GameStore.NODES[0], GameStore.NODES[2]);
+    GameStore.connectPorts('C13', GameStore.NODES[1], GameStore.NODES[3], false);
+    GameStore.connectPorts('C23', GameStore.NODES[2], GameStore.NODES[3], false);
   }
 
   preload () {

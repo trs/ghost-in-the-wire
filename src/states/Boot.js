@@ -21,7 +21,6 @@ export default class extends Phaser.State {
   }
 
   create () {
-    this.game.stage.backgroundColor = '#000000';
   }
 
   render () {

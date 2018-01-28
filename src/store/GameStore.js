@@ -1,5 +1,6 @@
 import uuid from 'uuid/v4';
 import _ from 'lodash';
+import {LEVEL_TYPE} from '../classes/const';
 
 // this can be turned into a class structure later
 // it works as separate functions for now
@@ -112,18 +113,6 @@ export function getCurrentLevel() {
 export function incrementLevel() {
   currentLevel++;
   resetState();
-}
-
-export const LEVEL_TYPE = {
-  MAP: 'map',
-  NETWORK: 'network'
-}
-
-export const LAYER_TYPE = {
-  BACKGROUND: 'background',
-  FLOOR: 'floor',
-  COLLISION: 'collision',
-  INTERACT: 'interact'
 }
 
 export function addLevelMap(map) {

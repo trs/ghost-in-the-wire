@@ -1,9 +1,5 @@
 import Phaser from 'phaser'
-
-const WALK = '[animation] walk';
-// const SHOOT = '[animation] shoot';
-// const ARM = '[animation] arm';
-// const DISARM = '[animation] disarm';
+import {ANIMATION} from '../classes/const';
 
 export default class extends Phaser.Sprite {
   constructor ({ game, x, y, asset }) {
@@ -17,7 +13,7 @@ export default class extends Phaser.Sprite {
     // this.keys = this.game.input.keyboard.addKeys([Phaser.KeyCode.SPACEBAR]);
     // this.game.input.keyboard.addKeyCapture([Phaser.KeyCode.SPACEBAR]);
     
-    this.animations.add(WALK, [0, 1, 2], 8, true);
+    this.animations.add(ANIMATION.WALK, [0, 1, 2], 8, true);
     // this.animations.add(SHOOT, [4, 3], 10, false);
     // this.animations.add(ARM, [0, 3], 8, false);
     // this.animations.add(DISARM, [3, 0], 8, false);
@@ -27,12 +23,12 @@ export default class extends Phaser.Sprite {
   }
 
   walk() {
-    this.animations.play(WALK);
+    this.animations.play(ANIMATION.WALK);
   }
 
   stopWalking() {
     this.frame = 0;
-    this.animations.stop(WALK);
+    this.animations.stop(ANIMATION.WALK);
   }
 
 //   arm() {

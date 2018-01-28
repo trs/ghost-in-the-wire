@@ -1,6 +1,5 @@
 /* globals __DEV__ */
 import Phaser from 'phaser';
-import Mushroom from '../sprites/Mushroom';
 import * as GameStore from '../store/GameStore';
 import _ from 'lodash';
 
@@ -81,7 +80,7 @@ export default class NetworkState extends Phaser.State {
 
   render () {
     if (__DEV__) {
-      // this.game.debug.spriteInfo(this.mushroom, 32, 32)
+      
     }
   }
 }

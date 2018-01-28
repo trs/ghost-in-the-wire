@@ -39,7 +39,7 @@ export default class {
   }
 
   setLevelTypeVisibility(state, type) {
-    const collisionTile = [3, 4, 5, 7, 8, 9, 10, 11, 12, 14, 15, 17, 22, 23, 24, 27, 28, 29, 36];
+    const collisionTile = [2, 3, 4, 12, 13, 14, 34, 44, 47, 54, 55, 56, 57, 58, 61, 62, 67, 71, 72, 78, 81, 82, 88, 91, 92, 97, 98];
     
     state.backgroundLayer.visible = false;
     state.floorLayer.visible = false;

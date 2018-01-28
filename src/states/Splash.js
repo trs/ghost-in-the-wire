@@ -62,6 +62,6 @@ export default class extends Phaser.State {
   }
 
   create () {
-    setTimeout(() => this.state.start('Onboarding'), 2000);
+    setTimeout(() => this.state.start('Onboarding'), 1500);
   }
 }

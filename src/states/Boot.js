@@ -16,12 +16,13 @@ export default class extends Phaser.State {
       active: this.fontsLoaded
     })
 
-    this.load.image('loaderBg', './assets/images/loader-bg.png')
-    this.load.image('loaderBar', './assets/images/loader-bar.png')
+    this.load.image('titleArt', './assets/images/title-art.png');
+    this.load.image('loaderBg', './assets/images/loader-bg.png');
+    this.load.image('loaderBar', './assets/images/loader-bar.png');
   }
 
   create () {
-    this.game.stage.backgroundColor = '#000000';
+    this.game.stage.backgroundColor = '#2a2a2a';
   }
 
   render () {

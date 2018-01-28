@@ -6,7 +6,10 @@ import Enemy from '../sprites/Enemy';
 import {LEVEL_TYPE} from '../classes/const'
 import * as GameStore from '../store/GameStore'
 
+<<<<<<< HEAD
 import Terminal from '../sprites/Terminal';
+=======
+>>>>>>> WIP: toggle switch states (#22)
 import ToggleSwitch from '../sprites/ToggleSwitch';
 
 export default class extends Phaser.State {
@@ -54,14 +57,31 @@ export default class extends Phaser.State {
       asset: 'enemy'
     });
 
+    const [connection] = GameStore.getConnections();
+    const {connection_id} = connection;
+    console.log(connection);
+
+    this.toggleSwitch = new ToggleSwitch({
+      game: this.game,
+      x: this.world.centerX - 600,
+      y: this.world.centerY - 600,
+      asset: 'toggle_switch',
+      connection_id
+    });
+
     this.game.add.existing(this.firefly);
     this.game.add.existing(this.enemy);
+<<<<<<< HEAD
+=======
+    this.game.add.existing(this.toggleSwitch);
+>>>>>>> WIP: toggle switch states (#22)
 
     this.physics.startSystem(Phaser.Physics.Arcade);
     this.physics.setBoundsToWorld();
 
     this.physics.arcade.enable(this.firefly);
     this.physics.arcade.enable(this.enemy);
+    this.physics.arcade.enable(this.toggleSwitch);
 
     this.firefly.body.collideWorldBounds = true;
     this.enemy.body.collideWorldBounds = true;

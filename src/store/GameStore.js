@@ -13,16 +13,20 @@ import {LEVEL_TYPE} from '../classes/const';
 
 export const NODES = [{
   id: 0,
-  pos: [-200, -50]
+  pos: [85, 28],
+  playerPos: [85, 28]
 }, {
   id: 1,
-  pos: [-20, -60]
+  pos: [240, 20],
+  playerPos: [240, 20]
 }, {
   id: 2,
-  pos: [200, 0]
+  pos: [96, 250],
+  playerPos: [96, 250]
 }, {
   id: 3,
-  pos: [-150, 20]
+  pos: [210, 100],
+  playerPos: [210, 100]
 }];
 
 let currentLevel = 0;

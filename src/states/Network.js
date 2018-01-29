@@ -88,7 +88,7 @@ export default class NetworkState extends Phaser.State {
     this.physics.arcade.enable(this.electrifly);
 
 
-    this.camera.focusOnXY(this.world.centerX, this.world.centerY);
+    this.camera.focusOnXY(-100,0);
   }
 
   cannotJump(toNode) {

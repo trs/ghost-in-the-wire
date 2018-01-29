@@ -2,11 +2,14 @@
     "name": "ghost-in-the-wire",
     "version": "1.2.1",
     "description": "Global Game Jam 2018",
-    "authors": [{
-        "name": "Tyler Stewart"
-    }, {
-        "name": "Chris Rabl"
-    }],
+    "authors": [
+        {
+            "name": "Tyler Stewart"
+        },
+        {
+            "name": "Chris Rabl"
+        }
+    ],
     "main": "index.js",
     "scripts": {
         "dev": "webpack",

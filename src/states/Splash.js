@@ -22,10 +22,9 @@ const NODES = [{
 
 export default class extends Phaser.State {
   init () {
-    GameStore.addLevelMap(new LevelMap({name: 'level2', startX: 60, startY: 255})); 
+    GameStore.addLevelMap(new LevelMap({name: 'level2', startX: 30, startY: 255})); 
   
     // initialize network basic map
-    GameStore.setCurrentNode(GameStore.NODES[0]);
     GameStore.connectPorts('C01', GameStore.NODES[0], GameStore.NODES[1]);
     GameStore.connectPorts('C02', GameStore.NODES[0], GameStore.NODES[2]);
     GameStore.connectPorts('C13', GameStore.NODES[1], GameStore.NODES[3], false);

@@ -24,6 +24,9 @@ export default class extends Phaser.State {
   }
 
   create() {
+    const currentNode = GameStore.getCurrentNode();
+    console.log(currentNode)
+
     this.music = this.game.add.audio('melody-120bpm');
     this.music.onDecoded.add(this.startMusic, this);
 
@@ -42,8 +45,8 @@ export default class extends Phaser.State {
 
     this.firefly = new Firefly({
       game: this.game,
-      x: currentLevelMap.startX,
-      y: currentLevelMap.startY,
+      x: currentNode ? currentNode.playerPos[0] : currentLevelMap.startX,
+      y: currentNode ? currentNode.playerPos[1] : currentLevelMap.startY,
       asset: 'firefly'
     });
 
@@ -62,12 +65,12 @@ export default class extends Phaser.State {
 
 
 
-    /*this.toggleSwitch = new ToggleSwitch({
+    this.toggleSwitch = new ToggleSwitch({
       game: this.game,
-      x: this.world.centerX - 600,
-      y: this.world.centerY - 600,
+      x: 270,
+      y: 252,
       asset: 'toggle_switch',
-      connection_id: 'C23'
+      connection_id: 'C13'
     });
 
     this.game.add.existing(this.toggleSwitch);
@@ -75,7 +78,7 @@ export default class extends Phaser.State {
 
     this.toggleSwitch.body.collideWorldBounds = true;
     this.toggleSwitch.body.immovable = true;
-    this.toggleSwitch.body.bounce.set(1, 1);*/
+    this.toggleSwitch.body.bounce.set(1, 1);
 
     /*this.terminal = new Terminal({
       game: this.game,
@@ -110,54 +113,42 @@ export default class extends Phaser.State {
   }
 
   checkTerminalInteraction() {
-    console.log('checkTerminalInteraction', this.firefly.x, this.firefly.y)
-    console.log(this.firefly.angle)
-    let offsetX = 0, offsetY = 0;
-    switch (this.firefly.angle) {
-      case 90: {
-        offsetY = 16;
-        break;
-      }
-      case -180: {
-        offsetX = -16;
-        break;
-      }
-      case -90: {
-        offsetY = -16;
-        break;
-      }
-      case 180: {
-        offsetX = 16;
-        break;
-      }
-    }
+    console.log('checkTerminalInteraction')
 
-    console.log(this.firefly.x + offsetX, this.firefly.y + offsetY)
-
-    var tile = this.map.getTileWorldXY(this.firefly.x + offsetX, this.firefly.y + offsetY, 16, 16, this.interactLayer);
-    if (!tile) return;
-
+    var tile = this.map.getTileWorldXY(this.firefly.x, this.firefly.y, 16, 16, this.interactLayer);
     console.log(tile)
-
-    if ([99, 100, 49, 50].includes(tile.index)) {
-      this.terminalCollisionHandler(this.player);
-    } else if ([25].includes(tile.index)) {
-      this.toggleSwitchCollisionHandler(this.player);
+    if (tile) {
+      console.log('try')
+      if ([5, 6].includes(tile.x) && tile.y === 16) {
+        this.terminalCollisionHandler(this.firefly, GameStore.NODES[2]);
+      } else if ([5, 6].includes(tile.x) && tile.y === 1) {
+        this.terminalCollisionHandler(this.firefly, GameStore.NODES[0]);
+      } else if ([15, 16].includes(tile.x) && tile.y === 1) {
+        this.terminalCollisionHandler(this.firefly, GameStore.NODES[1]);
+      } else {
+        console.log('NOPE')
+      }
+    }
+    else {
+      if (this.firefly.x >= 210 && this.firefly.y >= 80 && this.firefly.y <= 115) {
+        this.state.start('Win');
+      }
     }
   }
 
-  toggleSwitchCollisionHandler(player, toggleSwitch) {
-    toggleSwitch.toggle();
+  toggleSwitchCollisionHandler(player, connection_id) {
+    this.toggleSwitch.toggle();
   }
 
-  terminalCollisionHandler(player, terminal) {
-    console.log('TEST')
+  terminalCollisionHandler(player, node) {
+    console.log('terminalCollisionHandler', node)
+    GameStore.setCurrentNode(node);
     this.state.start('Network');
   }
 
   update() {
     this.physics.arcade.collide(this.firefly, this.collisionLayer)
-    // this.physics.arcade.collide(this.firefly, this.toggleSwitch, this.toggleSwitchCollisionHandler, null, this);
+    this.physics.arcade.collide(this.firefly, this.toggleSwitch, this.toggleSwitchCollisionHandler, null, this);
     // this.physics.arcade.collide(this.firefly, this.terminal, this.terminalCollisionHandler, null, this);
     // this.physics.arcade.collide(this.firefly, this.nwCollisionLayer)
 
@@ -181,7 +172,7 @@ export default class extends Phaser.State {
  
   render() {
     if (__DEV__) {
-      this.game.debug.spriteInfo(this.firefly, 32, 32)
+      // this.game.debug.spriteInfo(this.firefly, 32, 32)
     }
   }
 }
